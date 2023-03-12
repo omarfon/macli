@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe } from '@nestjs/common';
 import { SpecialtyesService } from './specialtyes.service';
 import { CreateSpecialtyeDto } from './dto/create-specialtye.dto';
 import { UpdateSpecialtyeDto } from './dto/update-specialtye.dto';
@@ -10,6 +10,7 @@ export class SpecialtyesController {
   constructor(private readonly specialtyesService: SpecialtyesService) {}
 
   @Post()
+  @UsePipes(ValidationPipe)
   create(@Body() createSpecialtyeDto: CreateSpecialtyeDto) {
     return this.specialtyesService.create(createSpecialtyeDto);
   }

@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsString, IsNumber } from 'class-validator';
 
 export class CreateDocumenTypeDto {
     @IsString({message:'El Id es un string'})
@@ -12,7 +12,10 @@ export class CreateDocumenTypeDto {
     
     @IsString()
     readonly description: string;
-    
+
     @IsString()
-    readonly constraint: string;
+    readonly createAd: string;
+
+    @IsString()
+    readonly updateAd: string;
 }

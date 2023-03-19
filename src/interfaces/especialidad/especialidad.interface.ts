@@ -4,4 +4,6 @@ export interface Especialidad {
     specialtyId: string;
     name: string;
     description: string;
+    createAd: string;
+    updateAd: string;
 }

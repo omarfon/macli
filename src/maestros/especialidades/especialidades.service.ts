@@ -14,18 +14,24 @@ export class EspecialidadesService {
       specialtyId: 'CARDIO01',
       name:'Cardiología',
       description:'Especialidad que trata al corazón',
+      createAd:Date(),
+      updateAd: Date()
     },
     {
       id:uuid(),
       specialtyId: 'GINECO01',
       name:'Ginecología',
       description:'Especialidad que trata la chocha',
+      createAd:Date(),
+      updateAd: Date()
     },
     {
       id:uuid(),
       specialtyId: 'PEDIATRI01',
       name:'Pediatría',
       description:'Especialidad que trata a los niños',
+      createAd:Date(),
+      updateAd: Date()
     }
   ]
   findAll() {
@@ -68,6 +74,6 @@ export class EspecialidadesService {
   delete(id: string) {
     const especialidad = this.findOne(id);
     this.especialidades = this.especialidades.filter(especialidad => especialidad.id !== id)
-    return
+    return 
   }
 }

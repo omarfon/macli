@@ -13,4 +13,11 @@ export class CreateEspecialidadeDto {
     
     @IsString()
     readonly description: string;
+
+    @IsString()
+    readonly createAd: string;
+
+    @IsString()
+    readonly updateAd: string;
+
 }

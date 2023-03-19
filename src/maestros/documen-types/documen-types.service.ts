@@ -1,43 +1,75 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateDocumenTypeDto } from './dto/create-documen-type.dto';
 import { UpdateDocumenTypeDto } from './dto/update-documen-type.dto';
 import { v4 as uuid } from 'uuid';
+import { Document } from '../../interfaces/especialidad/documents.interface';
 
 @Injectable()
 export class DocumenTypesService {
-  private documentTypes: CreateDocumenTypeDto[] = [
+  private documentTypes: Document[] = [
     {
       id:uuid(),
-      documentId:"MAS01",
-      name:"MASCULINO",
-      description:"género masculino",
-      constraint:"M"
+      documentId:"1",
+      name:"DNI",
+      description:"Documento Nacional de identidad",
+      createAd:Date(),
+      updateAd: Date()
     },
     {
       id:uuid(),
-      documentId:"FEM01",
-      name:"FEMENINO",
-      description:"género femenino",
-      constraint:"F"
+      documentId:"2",
+      name:"Carnet Extranjeria",
+      description:"Carnet de extranjeria",
+      createAd:Date(),
+      updateAd: Date()
+    },
+    {
+      id:uuid(),
+      documentId:"3",
+      name:"PASAPORTE",
+      description:"Documento pasaporte",
+      createAd:Date(),
+      updateAd: Date()
     }
   ]
-  create(createDocumenTypeDto: CreateDocumenTypeDto) {
-    return 'This action adds a new documenType';
-  }
 
   findAll() {
-    return `This action returns all documenTypes`;
+    return this.documentTypes;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} documenType`;
+  findOne(id: string) {
+    const documentTypes = this.documentTypes.find(document => document.id === id);
+      if(!documentTypes) throw new NotFoundException(`El documento con el id ${id}, no existe`)
+
+    return documentTypes
   }
 
-  update(id: number, updateDocumenTypeDto: UpdateDocumenTypeDto) {
-    return `This action updates a #${id} documenType`;
+  create(createDocumenTypeDto: CreateDocumenTypeDto) {
+    const documento: Document = {
+      id:uuid(),
+      ...createDocumenTypeDto
+    }
+    console.log({...createDocumenTypeDto});
+    this.documentTypes.push(documento);
+    return documento
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} documenType`;
+
+  update(id: string, updateDocumenTypeDto: UpdateDocumenTypeDto) {
+    let documentDB = this.findOne(id);
+    this.documentTypes = this.documentTypes.map(document => {
+      if(document.id === id){
+        documentDB = {...documentDB, ...updateDocumenTypeDto, id}
+        return documentDB
+      }
+      return document
+    })
+    return documentDB
+  }
+
+  delete(id: string) {
+    const document = this.findOne(id);
+    this.documentTypes = this.documentTypes.filter(document => document.id === id)
+    return 
   }
 }

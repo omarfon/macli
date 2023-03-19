@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { GendersService } from './genders.service';
 import { CreateGenderDto } from './dto/create-gender.dto';
 import { UpdateGenderDto } from './dto/update-gender.dto';
@@ -18,17 +18,19 @@ export class GendersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.gendersService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.gendersService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGenderDto: UpdateGenderDto) {
-    return this.gendersService.update(+id, updateGenderDto);
+  updateGender(
+    @Param('id') id: string, 
+    @Body() updateGenderDto: UpdateGenderDto) {
+    return this.gendersService.update(id, updateGenderDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.gendersService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.gendersService.delete(id);
   }
 }

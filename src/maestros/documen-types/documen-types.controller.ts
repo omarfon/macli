@@ -19,16 +19,16 @@ export class DocumenTypesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.documenTypesService.findOne(+id);
+    return this.documenTypesService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDocumenTypeDto: UpdateDocumenTypeDto) {
-    return this.documenTypesService.update(+id, updateDocumenTypeDto);
+    return this.documenTypesService.update(id, updateDocumenTypeDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.documenTypesService.remove(+id);
+    return this.documenTypesService.delete(id);
   }
 }

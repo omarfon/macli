@@ -19,4 +19,12 @@ export class UpdateEspecialidadeDto extends PartialType(CreateEspecialidadeDto) 
     @IsString()
     @IsOptional()
     readonly description?: string;
+
+    @IsString()
+    @IsOptional()
+    readonly createAd?: string;
+
+    @IsString()
+    readonly updateAd: string;
+
 }

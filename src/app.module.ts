@@ -13,8 +13,21 @@ import { PrestacionesModule } from './maestros/prestaciones/prestaciones.module'
 import { DoctorsModuleMaster } from './maestros/doctors/doctors.module';
 import { PatientsModule } from './maestros/patients/patients.module';
 
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 @Module({
-  imports: [UserModule, SpecialtyesModule, DoctorsModule, PersonaModule, EspecialidadesModule, DocumenTypesModule, GendersModule, MoneyTypesModule, PrestacionesModule, PatientsModule,DoctorsModuleMaster],
+  imports: [
+    TypeOrmModule.forRoot({
+      type:'mysql',
+      username:'root',
+      password:'admin',
+      host:'127.0.0.1',
+      port:3306,
+      database:'clini',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize:true
+    }),
+    UserModule, SpecialtyesModule, DoctorsModule, PersonaModule, EspecialidadesModule, DocumenTypesModule, GendersModule, MoneyTypesModule, PrestacionesModule, PatientsModule,DoctorsModuleMaster],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -1,13 +1,17 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
-import { Doctor } from '../../interfaces/especialidad/doctors.interface';
 import { v4 as uuid } from 'uuid';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Doctor } from './entities/doctor.entity';
+import { Repository } from 'typeorm';
+
 
 @Injectable()
 export class DoctorsService {
 
-  private doctors : Doctor[]=[
+    constructor(@InjectRepository(Doctor) private doctorRepository: Repository<Doctor>){}
+ /*  private doctors : Doctor[]=[
     {
         id:uuid(),
         nombreCompleto:"Omar Fonseca García",
@@ -18,32 +22,33 @@ export class DoctorsService {
         especialidad:34
 
     }
-  ]
+  ] */
 
 
   findAll() {
-    return this.doctors;
+    return this.doctorRepository;
   }
 
-  findOne(id: string) {
-    const doctor = this.doctors.find(doctor => doctor.id === id);
+ /*  findOne(id: string) {
+    const doctor = this.doctorRepository.find(doctor => doctor.id === id);
     if(!doctor) throw new NotFoundException(`No se encuenta al doctor con el ${id}`)
     return doctor
-  }
+  } */
 
   create(createDoctorDto: CreateDoctorDto) {
     const doctor : Doctor = {
       id:uuid(),
       ...createDoctorDto
     }
+    
     console.log({...createDoctorDto})
-    this.doctors.push(doctor);
+    this.doctorRepository.save(doctor);
     return doctor
   }
 
-  update(id: string, updateDoctorDto: UpdateDoctorDto) {
+/*   update(id: string, updateDoctorDto: UpdateDoctorDto) {
     let doctorDB = this.findOne(id);
-    this.doctors = this.doctors.map(doctor => {
+    this.doctorRepository = this.doctorRepository.map(doctor => {
       if(doctor.id === id){
         doctorDB = {...doctorDB, ...updateDoctorDto, id}
         return  doctorDB
@@ -51,11 +56,11 @@ export class DoctorsService {
       return doctor
     })
     return doctorDB;
-  }
+  } */
 
-  delete(id: string) {
+/*   delete(id: string) {
     const doctor = this.findOne(id);
-    this.doctors = this.doctors.filter(doctor => doctor.id === id)
+    this.doctorRepository = this.doctorRepository.filter(doctor => doctor.id === id)
     return `Se ha eliminado al doctor con id: #${id}`;
-  }
+  } */
 }

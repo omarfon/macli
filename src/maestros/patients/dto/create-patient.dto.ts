@@ -1,9 +1,10 @@
 import { IsString, IsNumber } from 'class-validator';
 
 export class CreatePatientDto {
-
-        readonly id: string;
         @IsString()
+        readonly id: string;
+
+        @IsNumber()
         readonly IdPaciente: number;
 
         @IsNumber()

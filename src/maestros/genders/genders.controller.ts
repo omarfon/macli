@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from
 import { GendersService } from './genders.service';
 import { CreateGenderDto } from './dto/create-gender.dto';
 import { UpdateGenderDto } from './dto/update-gender.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('genders')
+@ApiTags('Maestros/Generos')
 export class GendersController {
   constructor(private readonly gendersService: GendersService) {}
 

@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MoneyTypesService } from './money-types.service';
 import { CreateMoneyTypeDto } from './dto/create-money-type.dto';
 import { UpdateMoneyTypeDto } from './dto/update-money-type.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('money-types')
+@ApiTags('Maestros/Tipo Moneda')
 export class MoneyTypesController {
   constructor(private readonly moneyTypesService: MoneyTypesService) {}
 

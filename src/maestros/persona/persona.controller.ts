@@ -5,7 +5,7 @@ import { UpdatePersonaDto } from './dto/update-persona.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('persona')
-@ApiTags('Mestros/Personas')
+@ApiTags('Maestros / Personas')
 export class PersonaController {
   constructor(private readonly personaService: PersonaService) {}
 

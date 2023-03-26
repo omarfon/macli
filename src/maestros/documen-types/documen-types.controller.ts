@@ -1,9 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DocumenTypesService } from './documen-types.service';
 import { CreateDocumenTypeDto } from './dto/create-documen-type.dto';
 import { UpdateDocumenTypeDto } from './dto/update-documen-type.dto';
 
 @Controller('documen-types')
+@ApiTags('Maestros/Tipos de documentos')
 export class DocumenTypesController {
   constructor(private readonly documenTypesService: DocumenTypesService) {}
 

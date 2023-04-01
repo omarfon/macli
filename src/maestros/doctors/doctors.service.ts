@@ -43,14 +43,27 @@ export class DoctorsService {
     return this.doctorRepository.save(newUser)
   } 
 
-  update(id: string, updateDoctorDto: UpdateDoctorDto) {
-    return this.doctorRepository.update({id} , updateDoctorDto)
+  async update(id: string, doctor: UpdateDoctorDto) {
+    const userFound = await this.doctorRepository.findOne({
+      where:{
+        id
+      }
+    })
+    if(!userFound){
+      return new HttpException('El usuario no fue encontrado', HttpStatus.NOT_FOUND);
+    }
+    const updateDoctor = Object.assign(userFound, doctor);
+    return this.doctorRepository.save(updateDoctor);
   }
 
-  delete(id: string) {
-    return this.doctorRepository.delete({
-      id
-    })
+
+  async delete(id: string) {
+    const result =  await this.doctorRepository.delete({id});
+
+      if( result.affected === 0){
+        return new HttpException('El usuario no se encontró', HttpStatus.NOT_FOUND);
+      }
+    return result
   }
 
 }

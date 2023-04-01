@@ -4,16 +4,16 @@ import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 export class Doctor {
 
     @Column()
-    @PrimaryColumn()
+    @PrimaryColumn({unique:true})
     id: string;
 
     @Column()
     nombreCompleto: string;
 
-    @Column({unique:true})
+    @Column()
     tipoDocumento:number;
 
-    @Column()
+    @Column({unique:true})
     numeroDocumento:string;
 
     @Column()

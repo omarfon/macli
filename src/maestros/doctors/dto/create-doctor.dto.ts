@@ -8,8 +8,8 @@ export class CreateDoctorDto {
      @IsString()
      readonly nombreCompleto: string;
 
-     @IsNumber()
-     readonly tipoDocumento:number;
+     @IsString()
+     readonly tipoDocumento:string;
 
      @IsString()
      readonly numeroDocumento:string;
@@ -20,7 +20,7 @@ export class CreateDoctorDto {
      @IsString()
      readonly rne:string;
 
-     @IsNumber()
-     readonly especialidad:number;
+     @IsString()
+     readonly especialidad:string;
 
 }

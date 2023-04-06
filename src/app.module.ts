@@ -20,11 +20,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type:'mysql',
       username:'root',
-      password:'admin',
-      host:'127.0.0.1',
+      password:'123456',
+      host:'localhost',
       port:3306,
       database:'clini',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      entities: [__dirname + '/**/*.entity.js'],
       synchronize:true
     }),
     UserModule, SpecialtyesModule, DoctorsModule, PersonaModule, EspecialidadesModule, DocumenTypesModule, GendersModule, MoneyTypesModule, PrestacionesModule, PatientsModule,DoctorsModuleMaster],

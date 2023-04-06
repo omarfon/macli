@@ -11,9 +11,9 @@ export class UpdateDoctorDto extends PartialType(CreateDoctorDto) {
      @IsOptional()
      readonly nombreCompleto?: string;
 
-     @IsNumber()
+     @IsString()
      @IsOptional()
-     readonly tipoDocumento?:number;
+     readonly tipoDocumento?:string;
 
      @IsString()
      @IsOptional()
@@ -27,7 +27,7 @@ export class UpdateDoctorDto extends PartialType(CreateDoctorDto) {
      @IsOptional()
      readonly rne?:string;
 
-     @IsNumber()
+     @IsString()
      @IsOptional()
-     readonly especialidad?:number;
+     readonly especialidad?:string;
 }

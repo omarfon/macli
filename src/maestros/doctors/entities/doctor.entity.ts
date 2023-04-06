@@ -1,17 +1,16 @@
 import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name: 'doctores'})
+@Entity()
 export class Doctor {
 
-    @Column()
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     id: string;
 
     @Column()
     nombreCompleto: string;
 
-    @Column({unique:true})
-    tipoDocumento:number;
+    @Column()
+    tipoDocumento:string;
 
     @Column()
     numeroDocumento:string;
@@ -19,10 +18,10 @@ export class Doctor {
     @Column()
     cmp:string;
 
-    @Column({nullable:true})
+    @Column()
     rne:string;
 
     @Column()
-    especialidad:number;
+    especialidad:string;
 
 }

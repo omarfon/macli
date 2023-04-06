@@ -6,7 +6,7 @@ import { UpdateDoctorDto } from './dto/update-doctor.dto';
 
 @Controller('maestros/doctors')
 @ApiTags('Maestros / Doctores')
-export class DoctorsController {
+export class DoctorsMaestroController {
   constructor(private readonly doctorsService: DoctorsService) {}
 
   @Post()

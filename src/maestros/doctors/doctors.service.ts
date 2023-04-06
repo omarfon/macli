@@ -3,7 +3,7 @@ import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 import { v4 as uuid } from 'uuid';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Doctor } from './entities/doctor.entity';
+import { Doctor } from 'src/doctors/entities/doctor.entity';
 import { Repository } from 'typeorm';
 
 
@@ -25,8 +25,13 @@ export class DoctorsService {
   ] */
 
 
-  findAll() {
-    return this.doctorRepository;
+  async findAll() {
+    try{
+      return this.doctorRepository;
+    }
+    catch(error){
+      return error
+    }
   }
 
  /*  findOne(id: string) {
@@ -35,15 +40,19 @@ export class DoctorsService {
     return doctor
   } */
 
-  create(createDoctorDto: CreateDoctorDto) {
-    const doctor : Doctor = {
-      id:uuid(),
-      ...createDoctorDto
+  async create(createDoctorDto: CreateDoctorDto) {
+    try{
+      const doctor : Doctor = {
+        id:uuid(),
+        ...createDoctorDto
+      }
+      console.log({...createDoctorDto})
+      await this.doctorRepository.save(doctor);
+      return doctor
+    } catch (error){
+      console.log(error)
+      return error
     }
-    
-    console.log({...createDoctorDto})
-    this.doctorRepository.save(doctor);
-    return doctor
   }
 
 /*   update(id: string, updateDoctorDto: UpdateDoctorDto) {

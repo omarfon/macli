@@ -3,8 +3,10 @@ import { PersonaService } from './persona.service';
 import { CreatePersonaDto } from './dto/create-persona.dto';
 import { UpdatePersonaDto } from './dto/update-persona.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { Persona } from './entities/persona.entity';
 
-@Controller('persona')
+
+@Controller('maestros/personas')
 @ApiTags('Maestros / Personas')
 export class PersonaController {
   constructor(private readonly personaService: PersonaService) {}
@@ -15,7 +17,7 @@ export class PersonaController {
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<Persona[]> {
     return this.personaService.findAll();
   }
 
@@ -31,6 +33,6 @@ export class PersonaController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.personaService.remove(+id);
+    return this.personaService.delete(+id);
   }
 }

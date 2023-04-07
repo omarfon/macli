@@ -18,16 +18,26 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type:'mysql',
-      username:'root',
-      password:'admin',
-      host:'127.0.0.1',
-      port:3306,
+      type:'postgres',
+      username:'postgres',
+      password:'123456',
+      host:'localhost',
+      port:5433,
       database:'clini',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize:true
     }),
-    UserModule, SpecialtyesModule, DoctorsModule, PersonaModule, EspecialidadesModule, DocumenTypesModule, GendersModule, MoneyTypesModule, PrestacionesModule, PatientsModule,DoctorsModuleMaster],
+    UserModule, 
+    SpecialtyesModule, 
+    DoctorsModule, 
+    PersonaModule, 
+    EspecialidadesModule, 
+    DocumenTypesModule, 
+    GendersModule, 
+    MoneyTypesModule, 
+    PrestacionesModule, 
+    PatientsModule,
+    DoctorsModuleMaster],
   controllers: [AppController],
   providers: [AppService],
 })
